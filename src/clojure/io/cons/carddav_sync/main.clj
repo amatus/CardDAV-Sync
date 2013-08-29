@@ -1,8 +1,7 @@
 (ns io.cons.carddav_sync.main
   (:use [neko.activity :only [defactivity set-content-view!]]
         [neko.threading :only [on-ui]]
-        [neko.ui :only [make-ui]]
-        [neko.application :only [defapplication]]))
+        [neko.ui :only [make-ui]]))
 
 (defactivity io.cons.carddav_sync.MainActivity
   :def a

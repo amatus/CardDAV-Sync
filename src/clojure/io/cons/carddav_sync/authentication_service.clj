@@ -1,6 +1,6 @@
 (ns io.cons.carddav_sync.authentication_service
   (:use io.cons.carddav_sync.log)
-  (:require io.cons.carddav_sync.authenticator)
+  (:import io.cons.carddav_sync.authenticator)
   (:gen-class
    :extends android.app.Service
    :exposes-methods {onCreate superOnCreate
@@ -16,9 +16,7 @@
   [this]
   (.superOnCreate this)
   (log-i "Authentication Service created")
-  (swap! (.state this)
-         #(when-not %
-            (io.cons.carddav_sync.authenticator. this))))
+  (swap! (.state this) #(when-not % (authenticator. this))))
 
 (defn -onDestroy
   [this]

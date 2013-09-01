@@ -1,6 +1,6 @@
 (ns io.cons.carddav_sync.sync_service
   (:use io.cons.carddav_sync.log)
-  (:require io.cons.carddav_sync.sync_adapter)
+  (:import io.cons.carddav_sync.sync_adapter)
   (:gen-class
    :extends android.app.Service
    :exposes-methods {onCreate superOnCreate
@@ -17,9 +17,7 @@
   (.superOnCreate this)
   (log-i "Service created")
   (swap! (.state this)
-         #(when-not %
-            (io.cons.carddav_sync.sync_adapter.
-              (.getApplicationContext this) true))))
+         #(when-not % (sync_adapter. (.getApplicationContext this) true))))
 
 (defn -onDestroy
   [this]

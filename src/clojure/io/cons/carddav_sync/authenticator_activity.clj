@@ -12,4 +12,4 @@
   (on-ui
    (set-content-view! this
     (make-ui [:linear-layout {}
-              [:text-view {:text "Hello from Clojure!"}]]))))
+              [:text-view {:text "Authenticator"}]]))))

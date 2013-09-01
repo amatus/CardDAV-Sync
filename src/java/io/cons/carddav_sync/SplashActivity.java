@@ -23,12 +23,16 @@ public class SplashActivity extends Activity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
+	Intent selector = getIntent().getSelector();
+	if (selector == null) {
+            selector = new Intent("io.cons.carddav_sync.MAIN");
+	}
         if (firstLaunch) {
             firstLaunch = false;
             setupSplash();
-            loadClojure();
+            loadClojure(selector);
         } else {
-            proceed();
+            proceed(selector);
         }
     }
 
@@ -43,12 +47,12 @@ public class SplashActivity extends Activity {
         circleView.startAnimation(rotation);
     }
 
-    public void proceed() {
-        startActivity(new Intent("io.cons.carddav_sync.MAIN"));
+    public void proceed(final Intent selector) {
+        startActivity(selector);
         finish();
     }
 
-    public void loadClojure() {
+    public void loadClojure(final Intent selector) {
         new Thread(new Runnable(){
                 @Override
                 public void run() {
@@ -59,7 +63,7 @@ public class SplashActivity extends Activity {
                     Var INIT = RT.var("neko.application", "init-application");
                     INIT.invoke(SplashActivity.this.getApplication());
 
-                    proceed();
+                    proceed(selector);
                 }
             }).start();
     }

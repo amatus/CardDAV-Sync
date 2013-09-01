@@ -36,6 +36,8 @@
         <category android:name='android.intent.category.DEFAULT'/>
       </intent-filter>
     </activity>
+    <activity android:name=".authenticator_activity">
+    </activity>
     <service android:name=".sync_service"
              android:exported="true">
       <intent-filter>

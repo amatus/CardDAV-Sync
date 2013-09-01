@@ -1,18 +1,27 @@
 (ns io.cons.carddav_sync.authenticator
   (:use io.cons.carddav_sync.log)
+  (:import android.accounts.AccountManager
+           android.content.Intent
+           android.os.Bundle
+           io.cons.carddav_sync.authenticator_activity)
   (:gen-class
    :extends android.accounts.AbstractAccountAuthenticator
-   :state state
+   :state context
    :init init))
 
 (defn -init
   [context]
-  [[context] nil])
+  [[context] context])
 
 (defn -addAccount
   [this response accountType authTokenType requiredFeatures options]
   (log-i "addAccount")
-  nil)
+  (let [intent (Intent. (.context this) authenticator_activity)
+        bundle (Bundle.)]
+    (.putExtra intent AccountManager/KEY_ACCOUNT_AUTHENTICATOR_RESPONSE
+               response)
+    (.putParcelable bundle AccountManager/KEY_INTENT intent)
+    bundle))
 
 (defn -confirmCredentials
   [this response account options]

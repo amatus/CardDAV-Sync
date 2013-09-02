@@ -2,5 +2,8 @@
 <resources>
 
   <string name="app_name">CardDAV-Sync</string>
+  <string name="prompt_user">User</string>
+  <string name="prompt_password">Password</string>
+  <string name="prompt_url">URL</string>
 
 </resources>

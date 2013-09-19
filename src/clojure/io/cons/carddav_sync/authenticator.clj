@@ -4,7 +4,7 @@
   (:import android.accounts.AccountManager
            android.content.Intent
            android.os.Bundle
-           [io.cons.carddav_sync authenticator_activity SplashActivity])
+           io.cons.carddav_sync.authenticator_activity)
   (:gen-class
    :extends android.accounts.AbstractAccountAuthenticator
    :state context
@@ -17,12 +17,10 @@
 (defn -addAccount
   [this response accountType authTokenType requiredFeatures options]
   (log-i "addAccount")
-  (let [selector (Intent. (.context this) authenticator_activity)
-        intent (Intent. (.context this) SplashActivity)
+  (let [intent (Intent. (.context this) authenticator_activity)
         bundle (Bundle.)]
-    (.putExtra selector AccountManager/KEY_ACCOUNT_AUTHENTICATOR_RESPONSE
+    (.putExtra intent AccountManager/KEY_ACCOUNT_AUTHENTICATOR_RESPONSE
                response)
-    (.setSelector intent selector)
     (.putParcelable bundle AccountManager/KEY_INTENT intent)
     bundle))
 

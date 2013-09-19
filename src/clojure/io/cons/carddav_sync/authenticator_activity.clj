@@ -1,6 +1,7 @@
 (ns io.cons.carddav_sync.authenticator_activity
   (:use io.cons.carddav_sync.log
         [neko.activity :only [defactivity set-content-view!]]
+        [neko.init :only [init]]
         [neko.resource :only [get-resource]]
         [neko.threading :only [on-ui]]
         [neko.ui :only [make-ui]]
@@ -48,6 +49,7 @@
 (defn -onCreate
   [this savedInstanceState]
   (.superOnCreate this savedInstanceState)
+  (init this)
   (on-ui
    (set-content-view! this
     (make-ui [:scroll-view {}

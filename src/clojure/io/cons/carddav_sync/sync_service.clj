@@ -1,5 +1,6 @@
 (ns io.cons.carddav_sync.sync_service
   (:use io.cons.carddav_sync.log)
+  (:require io.cons.carddav_sync.sync_adapter)
   (:import io.cons.carddav_sync.sync_adapter)
   (:gen-class
    :extends android.app.Service

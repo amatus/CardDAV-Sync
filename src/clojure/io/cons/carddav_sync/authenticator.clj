@@ -1,11 +1,10 @@
 (ns io.cons.carddav_sync.authenticator
   (:use io.cons.carddav_sync.log)
+  (:require io.cons.carddav_sync.authenticator_activity)
   (:import android.accounts.AccountManager
            android.content.Intent
            android.os.Bundle
-           [io.cons.carddav_sync
-            authenticator_activity
-            SplashActivity])
+           [io.cons.carddav_sync authenticator_activity SplashActivity])
   (:gen-class
    :extends android.accounts.AbstractAccountAuthenticator
    :state context

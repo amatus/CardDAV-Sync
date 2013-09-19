@@ -1,5 +1,6 @@
 (ns io.cons.carddav_sync.authentication_service
   (:use io.cons.carddav_sync.log)
+  (:require io.cons.carddav_sync.authenticator)
   (:import io.cons.carddav_sync.authenticator)
   (:gen-class
    :extends android.app.Service

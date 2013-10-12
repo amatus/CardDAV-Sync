@@ -32,11 +32,9 @@
 
 (defn login
   [_]
-  (let [user (.toString (.getText user))
-        password (.toString (.getText password))
-        url (.toString (.getText url))]
-    (.execute (io.cons.carddav_sync.login_task.)
-              (into-array Object [user password url]))))
+  (.execute
+    (io.cons.carddav_sync.login_task.)
+    (into-array Object (map #(.. % (getText) (toString)) [user password url]))))
 
 (defelement :frame-layout
             :classname android.widget.FrameLayout
